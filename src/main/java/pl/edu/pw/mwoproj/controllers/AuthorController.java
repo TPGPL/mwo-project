@@ -50,7 +50,7 @@ public class AuthorController {
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable int id, Model model) {
-        var author = service.getById(id);
+        var author = mapper.mapToDto(service.getById(id));
 
         model.addAttribute("updateId", id);
         model.addAttribute("author", author);

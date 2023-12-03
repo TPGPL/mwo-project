@@ -33,9 +33,10 @@ jobs:
         OPS_SECRET: ${{ secrets.AZURE_PAT }}
         PR_NUMBER: ${{ github.event.number }}
       run: |
+        data='[{"op":"add","path":"/fields/System.Title","from":null,"value":"Test errors in PR # '${PR_NUMBER}'}]'
         curl -X POST \
           -H "Content-Type: application/json-patch+json" \
           -u 01169585:$OPS_SECRET \
-          -d '[{"op":"add","path":"/fields/System.Title","from":null,"value":"Test errors in PR #${PR_NUMBER}"}]' \
+          -d $data \
           https://dev.azure.com/01169585/mwo-project/_apis/wit/workitems/\$bug?api-version=7.2-preview.3
 

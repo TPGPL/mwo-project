@@ -31,7 +31,7 @@
             <tr th:each="book: ${books}">
                 <th th:id="|bookId-${book.id}|" scope="row" th:text="${book.id}"></th>
                 <td th:id="|bookTitle-${book.id}|" th:text="${book.title}"></td>
-                <td th:id="|bookAut-${book.id}|" th:text="${book.author.name} ${book.author.surname}"></td>
+                <td th:id="|bookAut-${book.id}|" th:text="${book.author.name+' '+book.author.surname}"></td>
                 <td th:id="|bookPub-${book.id}|" th:text="${book.publisher.name}"></td>
                 <td th:id="|bookCount-${book.id}|" th:text="${book.pageCount}"></td>
                 <td th:id="|bookDate-${book.id}|" th:text="${book.releaseDate}"></td>

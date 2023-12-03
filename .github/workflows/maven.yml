@@ -30,7 +30,6 @@ jobs:
       continue-on-error: true
     - name: Test
       run: mvn test
-      continue-on-error: true
     - name: Report bugs
       if: failure()
       env:

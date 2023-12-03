@@ -6,6 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +51,8 @@ public class BookServiceIntegrationTest {
         opt.addArguments("--no-sandbox");
         opt.addArguments("--disable-dev-shm-usage");
         opt.addArguments("--headless");
-        opt.addArguments("start-maximized");
         driver = new ChromeDriver(opt);
+        driver.manage().window().maximize();
     }
 
     @BeforeEach
@@ -90,7 +91,7 @@ public class BookServiceIntegrationTest {
         driver.findElement(By.className("date-input")).sendKeys("2019-11-11");
         driver.findElement(By.className("isbn-input")).sendKeys("1112223334441");
 
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.className("book-create-button"))).click();
+        new Actions(driver).moveToElement(driver.findElement(By.className("book-update-button"))).click().build().perform();
 
         assertThat(driver.getTitle()).isEqualTo("MVC App - Books");
         assertThat(driver.findElement(By.id("bookId-1")).getText()).isEqualTo("1");

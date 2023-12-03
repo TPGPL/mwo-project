@@ -22,7 +22,7 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Size(min = 2, max = 50, message = "The author name must be between 2 and 50 characters.")
-    @NotNull(message = "The author name must not be null.")
+    @NotNull(message = "The author name must not be null..")
     private String name;
     @Size(min = 2, max = 50, message = "The author surname must be between 2 and 50 characters.")
     @NotNull(message = "The author surname must not be null.")

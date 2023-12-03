@@ -6,7 +6,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -21,6 +22,7 @@ import pl.edu.pw.mwoproj.repositories.PublisherRepository;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -88,7 +90,7 @@ public class BookServiceIntegrationTest {
         driver.findElement(By.className("date-input")).sendKeys("2019-11-11");
         driver.findElement(By.className("isbn-input")).sendKeys("1112223334441");
 
-        driver.findElement(By.className("book-create-button")).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.className("book-create-button"))).click();
 
         assertThat(driver.getTitle()).isEqualTo("MVC App - Books");
         assertThat(driver.findElement(By.id("bookId-1")).getText()).isEqualTo("1");
@@ -118,7 +120,7 @@ public class BookServiceIntegrationTest {
         driver.findElement(By.className("date-input")).sendKeys("2019-11-11");
         driver.findElement(By.className("isbn-input")).sendKeys("1112223334441");
 
-        driver.findElement(By.className("book-create-button")).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.className("book-create-button"))).click();
 
         assertThat(driver.getTitle()).isEqualTo("MVC App - Books");
         assertThat(driver.findElement(By.className("no-content")).getText()).isEqualTo("No data available.");
@@ -162,7 +164,7 @@ public class BookServiceIntegrationTest {
         driver.findElement(By.className("date-input")).sendKeys("2016-11-11");
         driver.findElement(By.className("isbn-input")).sendKeys("1112223334442");
 
-        driver.findElement(By.className("book-update-button")).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.className("book-update-button"))).click();
 
         assertThat(driver.getTitle()).isEqualTo("MVC App - Books");
         assertThat(driver.findElement(By.id("bookId-1")).getText()).isEqualTo("1");
@@ -212,7 +214,7 @@ public class BookServiceIntegrationTest {
         driver.findElement(By.className("date-input")).sendKeys("2016-11-11");
         driver.findElement(By.className("isbn-input")).sendKeys("1112223334442");
 
-        driver.findElement(By.className("book-update-button")).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.className("book-update-button"))).click();
 
         assertThat(driver.getTitle()).isEqualTo("MVC App - Books");
         assertThat(driver.findElement(By.id("bookId-1")).getText()).isEqualTo("1");

@@ -29,14 +29,12 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Report bugs
       if: failure()
-      env:
-        OPS_SECRET: ${{ secrets.AZURE_PAT }}
-        PR_NUMBER: ${{ github.event.number }}
-      run: |
-        data='[{"op":"add","path":"/fields/System.Title","from":null,"value":"Test errors in PR # '${PR_NUMBER}'}]'
-        curl -X POST \
-          -H "Content-Type: application/json-patch+json" \
-          -u 01169585:$OPS_SECRET \
-          -d "$data" \
-          https://dev.azure.com/01169585/mwo-project/_apis/wit/workitems/\$bug?api-version=7.2-preview.3
+      uses: colindembovsky/az-create-work-item@v1.0.0
+      with:
+        token: ${{ secrets.AZURE_PAT }}
+        orgName: 01169585
+        project: mwo-project
+        type: Bug
+        title: Build run failure in PR \#${{ github.event.number }}
+        description: Created from Actions!
 

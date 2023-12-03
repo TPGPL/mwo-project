@@ -57,7 +57,7 @@ public class AuthorServiceIntegrationTest {
         driver.get("http://localhost:"+port+"/authors");
         driver.findElement(By.className("author-create-button")).click();
 
-        assertThat(driver.getTitle()).isEqualTo("MVC App - Create author");
+        assertThat(driver.getTitle()).isEqualTo("MVC App - Create authofr");
 
         driver.findElement(By.className("name-input")).sendKeys("NameTest");
         driver.findElement(By.className("surname-input")).sendKeys("SurnameTest");

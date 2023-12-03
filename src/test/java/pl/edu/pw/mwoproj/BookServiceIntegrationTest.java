@@ -4,6 +4,8 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,7 +44,11 @@ public class BookServiceIntegrationTest {
 
     @BeforeAll
     public void setup() {
-        driver = new FirefoxDriver();
+        ChromeOptions opt = new ChromeOptions();
+        opt.addArguments("--no-sandbox");
+        opt.addArguments("--disable-dev-shm-usage");
+        opt.addArguments("--headless");
+        driver = new ChromeDriver(opt);
     }
 
     @BeforeEach

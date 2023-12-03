@@ -34,9 +34,11 @@ jobs:
       if: failure()
       env:
         OPS_SECRET: ${{ secrets.AZURE_PAT }}
+        PR_NUMBER: ${{ github.event.number }}
       run: |
         curl -X POST \
+          -H "Content-Type: application/json-patch+json" \
           -u 01169585:$OPS_SECRET \
-          -d '[{"op":"add","path":"/fields/System.Title","from":null,"value":"Example bug"}]' \
-          https://dev.azure.com/01169585/mwo-project/_apis/wit/workitems/Bug?api-version=7.2-preview.3
+          -d '[{"op":"add","path":"/fields/System.Title","from":null,"value":"Test errors in PR #$PR_NUMBER"}]' \
+          https://dev.azure.com/01169585/mwo-project/_apis/wit/workitems/\$bug?api-version=7.2-preview.3
 

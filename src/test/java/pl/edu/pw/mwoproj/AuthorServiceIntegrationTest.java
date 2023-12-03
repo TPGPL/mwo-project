@@ -49,7 +49,7 @@ public class AuthorServiceIntegrationTest {
     public void emptyListTest() {
         driver.get("http://localhost:"+port+"/authors");
 
-        assertThat(driver.findElement(By.className("no-content")).getText()).isEqualTo("No data available.");
+        assertThat(driver.findElement(By.className("no-content")).getText()).isEqualTo("No dafta available.");
     }
 
     @Test

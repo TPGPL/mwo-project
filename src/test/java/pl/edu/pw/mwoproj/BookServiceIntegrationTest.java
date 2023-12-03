@@ -91,7 +91,7 @@ public class BookServiceIntegrationTest {
         driver.findElement(By.className("date-input")).sendKeys("2019-11-11");
         driver.findElement(By.className("isbn-input")).sendKeys("1112223334441");
 
-        new Actions(driver).moveToElement(driver.findElement(By.className("book-update-button"))).click().build().perform();
+        new Actions(driver).moveToElement(driver.findElement(By.className("book-create-button"))).click().build().perform();
 
         assertThat(driver.getTitle()).isEqualTo("MVC App - Books");
         assertThat(driver.findElement(By.id("bookId-1")).getText()).isEqualTo("1");

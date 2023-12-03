@@ -27,14 +27,14 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-      continue-on-error: true
     - name: Report bugs
       if: failure()
-      env:
-        OPS_SECRET: ${{ secrets.AZURE_PAT }}
-      run: |
-        curl -X POST \
-          -u 01169585:$OPS_SECRET \
-          -d '[{"op":"add","path":"/fields/System.Title","from":null,"value":"Example bug"}]' \
-          https://dev.azure.com/01169585/mwo-project/_apis/wit/workitems/Bug?api-version=7.2-preview.3
+      uses: colindembovsky/az-create-work-item@v1.0.0
+      with:
+        token: ${{ secrets.AZURE_PAT }}
+        orgName: '01169585'
+        project: mwo-project
+        type: Bug
+        title: 'Build run failure in PR #${{ github.event.number }}'
+        description: Run ${{ github.run_number }} finished with failure. For more information check <a href=https://github.com/TPGPL/mwo-project/pull/${{ github.event.number}}>here<a/>
 

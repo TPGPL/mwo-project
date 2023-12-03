@@ -35,6 +35,6 @@ jobs:
         orgName: '01169585'
         project: mwo-project
         type: Bug
-        title: Build run failure in PR #${{ github.event.number }}
-        description: Run ${{ github.run_number }} finished with failure. Check <a href=https://github.com/TPGPL/mwo-project/pull/${{ github.event.number}}>here<a/> for more information!
+        title: 'Build run failure in PR #${{ github.event.number }}'
+        description: 'Run ${{ github.run_number }} finished with failure. Check <a href=https://github.com/TPGPL/mwo-project/pull/${{ github.event.number}}>here<a/> for more information!'
 

@@ -29,7 +29,7 @@ Aplikacja jest podzielona na wiele modułów, które realizują następujące fu
 - `/repositories` - dostęp do obiektów w bazie danych
 - `/services` - serwisy udostępniające operacje CRUD dla określonych encji
 
-![](screeny/baza-danych.png)
+![](screeny/diagram-klas.png)
 
 ## Testy UI w Selenium
 

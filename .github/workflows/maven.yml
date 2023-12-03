@@ -32,7 +32,7 @@ jobs:
       uses: colindembovsky/az-create-work-item@v1.0.0
       with:
         token: ${{ secrets.AZURE_PAT }}
-        orgName: 01169585
+        orgName: '01169585'
         project: mwo-project
         type: Bug
         title: Build run failure in PR \#${{ github.event.number }}

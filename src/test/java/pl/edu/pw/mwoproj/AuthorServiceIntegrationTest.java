@@ -38,6 +38,7 @@ public class AuthorServiceIntegrationTest {
         opt.addArguments("--no-sandbox");
         opt.addArguments("--disable-dev-shm-usage");
         opt.addArguments("--headless");
+        opt.addArguments("start-maximized");
         driver = new ChromeDriver(opt);
     }
 

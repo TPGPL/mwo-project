@@ -2,6 +2,7 @@ package pl.edu.pw.mwoproj;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -91,6 +92,8 @@ public class BookServiceIntegrationTest {
         driver.findElement(By.className("date-input")).sendKeys("2019-11-11");
         driver.findElement(By.className("isbn-input")).sendKeys("1112223334441");
 
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,100)", "");
         new Actions(driver).moveToElement(driver.findElement(By.className("book-create-button"))).click().build().perform();
 
         assertThat(driver.getTitle()).isEqualTo("MVC App - Books");

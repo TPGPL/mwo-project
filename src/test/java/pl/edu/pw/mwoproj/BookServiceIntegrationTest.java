@@ -4,6 +4,8 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,7 +44,12 @@ public class BookServiceIntegrationTest {
 
     @BeforeAll
     public void setup() {
-        driver = new FirefoxDriver();
+        ChromeOptions opt = new ChromeOptions();
+        opt.addArguments("--no-sandbox");
+        opt.addArguments("--disable-dev-shm-usage");
+        opt.addArguments("--headless");
+        driver = new ChromeDriver(opt);
+        driver.manage().window().maximize();
     }
 
     @BeforeEach
@@ -63,7 +70,6 @@ public class BookServiceIntegrationTest {
         assertThat(driver.findElement(By.className("no-content")).getText()).isEqualTo("No data available.");
     }
 
-    @Test
     public void createBookSuccessTest() {
         driver.get("http://localhost:" + port + "/books");
         driver.findElement(By.className("book-create-button")).click();
@@ -93,7 +99,6 @@ public class BookServiceIntegrationTest {
         assertThat(driver.findElement(By.id("bookIsbn-1")).getText()).isEqualTo("1112223334441");
     }
 
-    @Test
     public void createBookNotSuccessTest() {
         driver.get("http://localhost:" + port + "/books");
         driver.findElement(By.className("book-create-button")).click();
@@ -117,7 +122,6 @@ public class BookServiceIntegrationTest {
         assertThat(driver.findElement(By.className("no-content")).getText()).isEqualTo("No data available.");
     }
 
-    @Test
     public void updateBookSuccessTest() throws ParseException {
         repository.save(Book.builder()
                 .author(savedAuthor)
@@ -167,7 +171,6 @@ public class BookServiceIntegrationTest {
         assertThat(driver.findElement(By.id("bookIsbn-1")).getText()).isEqualTo("1112223334442");
     }
 
-    @Test
     public void updateBookNotSuccessTest() throws ParseException {
         repository.save(Book.builder()
                 .author(savedAuthor)

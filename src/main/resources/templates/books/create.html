@@ -10,34 +10,34 @@
 <div class="container">
     <div th:insert="~{layout/header :: header}"></div>
     <div class="content">
-        <h2>Create new book</h2>
+        <h2 class="book-create-header">Create new book</h2>
         <form action="#" th:action="@{/books/create}" th:object="${book}" method="post">
             <input type="hidden" th:field="*{id}" />
             <div>
                 <label class="form-label" for="bookTitle">Title</label>
-                <input type="text" class="form-control" id="bookTitle" th:field="*{title}" />
+                <input type="text" class="form-control title-input" id="bookTitle" th:field="*{title}" />
             </div>
             <div>
                 <label class="form-label" for="bookAuth">Author ID</label>
-                <input type="number" class="form-control" id="bookAuth" th:field="*{authorId}" />
+                <input type="number" class="form-control author-input" id="bookAuth" th:field="*{authorId}" />
             </div>
             <div>
                 <label class="form-label" for="bookPub">Publisher ID</label>
-                <input type="number" class="form-control" id="bookPub" th:field="*{publisherId}" />
+                <input type="number" class="form-control publisher-input" id="bookPub" th:field="*{publisherId}" />
             </div>
             <div>
                 <label class="form-label" for="bookCount">Page count</label>
-                <input type="number" class="form-control" id="bookCount" th:field="*{pageCount}" />
+                <input type="number" class="form-control count-input" id="bookCount" th:field="*{pageCount}" />
             </div>
             <div>
                 <label class="form-label" for="bookDate">Release date</label>
-                <input type="date" class="form-control" id="bookDate" th:field="*{releaseDate}" />
+                <input type="date" class="form-control date-input" id="bookDate" th:field="*{releaseDate}" />
             </div>
             <div>
                 <label class="form-label" for="bookISBN">ISBN</label>
-                <input type="text" class="form-control" id="bookISBN" th:field="*{isbn}" />
+                <input type="text" class="form-control isbn-input" id="bookISBN" th:field="*{isbn}" />
             </div>
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary book-create-button">Create</button>
         </form>
     </div>
 </div>

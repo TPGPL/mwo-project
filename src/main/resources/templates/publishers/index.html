@@ -10,7 +10,7 @@
 <div class="container">
     <div th:insert="~{layout/header :: header}"></div>
     <div class="d-grid gap-2">
-        <a th:href="@{/publishers/create}" class="btn btn-primary">Create new publisher</a>
+        <a th:href="@{/publishers/create}" class="btn btn-primary publisher-create-button">Create new publisher</a>
     </div>
     <div class="content" th:if="${publishers != null && publishers.iterator().hasNext()}">
         <table class="table table-striped table-hover align-middle table-responsive">
@@ -23,11 +23,11 @@
             </thead>
             <tbody>
             <tr th:each="pub: ${publishers}">
-                <th scope="row" th:text="${pub.id}"></th>
-                <td th:text="${pub.name}"></td>
+                <th th:id="|publisherId-${pub.id}|" scope="row" th:text="${pub.id}"></th>
+                <td th:id="|publisherName-${pub.id}|" th:text="${pub.name}"></td>
                 <td>
-                    <a th:href="@{/publishers/update/{id}(id=${pub.id})}" class="btn btn-primary">Update</a>
-                    <a th:href="@{/publishers/delete/{id}(id=${pub.id})}" class="btn btn-danger">Delete</a>
+                    <a th:href="@{/publishers/update/{id}(id=${pub.id})}" th:id="|publisherUpdate-${pub.id}|" class="btn btn-primary">Update</a>
+                    <a th:href="@{/publishers/delete/{id}(id=${pub.id})}" th:id="|publisherDelete-${pub.id}|" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             </tbody>

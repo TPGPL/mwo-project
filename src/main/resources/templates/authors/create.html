@@ -10,22 +10,22 @@
 <div class="container">
     <div th:insert="~{layout/header :: header}"></div>
     <div class="content">
-        <h2>Create new author</h2>
+        <h2 class="author-create-header">Create new author</h2>
         <form action="#" th:action="@{/authors/create}" th:object="${author}" method="post">
             <input type="hidden" th:field="*{id}" />
             <div>
                 <label class="form-label" for="authorName">Name</label>
-                <input type="text" class="form-control" id="authorName" th:field="*{name}" />
+                <input type="text" class="form-control name-input" id="authorName" th:field="*{name}" />
             </div>
             <div>
                 <label class="form-label" for="authorSurname">Surname</label>
-                <input type="text" class="form-control" id="authorSurname" th:field="*{surname}" />
+                <input type="text" class="form-control surname-input" id="authorSurname" th:field="*{surname}" />
             </div>
             <div>
                 <label class="form-label" for="authorMail">Email</label>
-                <input type="email" class="form-control" id="authorMail" th:field="*{email}" />
+                <input type="email" class="form-control email-input" id="authorMail" th:field="*{email}" />
             </div>
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary author-create-button">Create</button>
         </form>
     </div>
 </div>

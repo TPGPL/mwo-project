@@ -10,7 +10,7 @@
 <div class="container">
     <div th:insert="~{layout/header :: header}"></div>
     <div class="d-grid gap-2">
-        <a th:href="@{/books/create}" class="btn btn-primary">Create new book</a>
+        <a th:href="@{/books/create}" class="btn btn-primary book-create-button">Create new book</a>
     </div>
     <div class="content" th:if="${books != null && books.iterator().hasNext()}">
 
@@ -29,16 +29,16 @@
             </thead>
             <tbody>
             <tr th:each="book: ${books}">
-                <th scope="row" th:text="${book.id}"></th>
-                <td th:text="${book.title}"></td>
-                <td th:text="${book.author.name} ${book.author.surname}"></td>
-                <td th:text="${book.publisher.name}"></td>
-                <td th:text="${book.pageCount}"></td>
-                <td th:text="${book.releaseDate}"></td>
-                <td th:text="${book.isbn}"></td>
+                <th th:id="|bookId-${book.id}|" scope="row" th:text="${book.id}"></th>
+                <td th:id="|bookTitle-${book.id}|" th:text="${book.title}"></td>
+                <td th:id="|bookAut-${book.id}|" th:text="${book.author.name} ${book.author.surname}"></td>
+                <td th:id="|bookPub-${book.id}|" th:text="${book.publisher.name}"></td>
+                <td th:id="|bookCount-${book.id}|" th:text="${book.pageCount}"></td>
+                <td th:id="|bookDate-${book.id}|" th:text="${book.releaseDate}"></td>
+                <td th:id="|bookIsbn-${book.id}|" th:text="${book.isbn}"></td>
                 <td>
-                    <a th:href="@{/books/update/{id}(id=${book.id})}" class="btn btn-primary">Update</a>
-                    <a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
+                    <a th:href="@{/books/update/{id}(id=${book.id})}" th:id="|bookUpdate-${book.id}|" class="btn btn-primary">Update</a>
+                    <a th:href="@{/books/delete/{id}(id=${book.id})}" th:id="|bookDelete-${book.id}|" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             </tbody>

@@ -10,14 +10,14 @@
 <div class="container">
     <div th:insert="~{layout/header :: header}"></div>
     <div class="content" th:if="${pub != null}">
-        <h2>Update publisher</h2>
+        <h2 class="publisher-update-header">Update publisher</h2>
         <form action="#" th:action="@{/publishers/update/{id}(id=${updateId})}" th:object="${pub}" method="post">
             <input type="hidden" th:field="*{id}" />
             <div>
                 <label class="form-label" for="authorName">Name</label>
-                <input type="text" class="form-control" id="authorName" th:field="*{name}" />
+                <input type="text" class="form-control publisher-name" id="authorName" th:field="*{name}" />
             </div>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary publisher-update-button">Update</button>
         </form>
     </div>
     <div class="no-content" th:if="${pub == null}">

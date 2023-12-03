@@ -93,8 +93,7 @@ public class BookServiceIntegrationTest {
         driver.findElement(By.className("isbn-input")).sendKeys("1112223334441");
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,100)", "");
-        new Actions(driver).moveToElement(driver.findElement(By.className("book-create-button"))).click().build().perform();
+        js.executeScript("document.getElementsByClassName('book-create-button').click();");
 
         assertThat(driver.getTitle()).isEqualTo("MVC App - Books");
         assertThat(driver.findElement(By.id("bookId-1")).getText()).isEqualTo("1");
